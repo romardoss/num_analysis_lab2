@@ -1,0 +1,5 @@
+/.vs
+NumAnalysisLab2.sln
+**/bin
+**/obj
+**NumAnalysisLab2.csproj
