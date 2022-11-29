@@ -16,7 +16,7 @@ namespace NumAnalysisLab2
             for (int i = 0; i < n; i++)
             {
                 double sum = 0;
-                for(int j = 0; j < n+1; j++)
+                for(int j = 0; j < n; j++)
                 {
                     sum += Math.Abs(m[i, j]);
                 }
@@ -71,11 +71,13 @@ namespace NumAnalysisLab2
                 double sum = 0;
                 for (int j = 1; j < n; j++)
                 {
-                    int IndexOfCurrentX = j;
-                    if (j == i) j++;
+                    int IndexOfCurrentX = j-1;
+                    if (j-1 >= i) IndexOfCurrentX++;
                     sum += m[i, j] * ValueOfArguments[IndexOfCurrentX];
+                    Console.WriteLine("x" + (IndexOfCurrentX + 1));
                 }
                 sum += m[i, n];
+                Console.WriteLine(sum);
                 ValueOfArgumentsTemp[i] = sum;
             }
             for(int i = 0; i < ValueOfArguments.Length; i++)
