@@ -23,10 +23,12 @@ namespace NumAnalysisLab2
             {30.07, -0.35, 1.05, 38.54, -3.56}
         };
 
+        static readonly double[] CalculatorResults = {1.08077, -0.50838, 1.11889, -0.97101};
+
         static void Main(string[] args)
         {
             Console.WriteLine("Початкова матриця:");
-            PrintMatrix(Matrix);
+            Print.Matrix(Matrix);
             Console.WriteLine();
 
             Console.WriteLine("Перевiрка матрицi на дiагональну перевагу:");
@@ -34,7 +36,7 @@ namespace NumAnalysisLab2
             Console.WriteLine();
 
             Console.WriteLine("Перетворена матриця:");
-            PrintMatrix(NewMatrix);
+            Print.Matrix(NewMatrix);
             Console.WriteLine();
 
             Console.WriteLine("Перевiрка матрицi на дiагональну перевагу:");
@@ -43,7 +45,7 @@ namespace NumAnalysisLab2
 
             Console.WriteLine("Перетворення матрицi до вигляду x1=-x2-x3-x4+b; x2=-x1-x3-x4+b; x3=... x4=...:");
             IterativeMethod.StartOfWork(NewMatrix);
-            PrintMatrix(NewMatrix);
+            Print.Matrix(NewMatrix);
             Console.WriteLine();
 
             Console.WriteLine("Обчислення матрицi:");
@@ -52,25 +54,17 @@ namespace NumAnalysisLab2
 
             Console.WriteLine("Вiдповiдi:");
             double[] array = IterativeMethod.ValueOfArguments;
-            foreach (double i in array)
-            {
-                Console.Write(i + " ");
-            }
-        }
+            Print.Array(array);
+            Console.WriteLine();
 
-        static void PrintMatrix(double[,] m)
-        {
-            int rowLength = m.GetLength(0);
-            int colLength = m.GetLength(1);
+            double[] NeviazkaCalculator = MistakeAndNeviazka.CalculateNeviazka(Matrix, CalculatorResults);
+            Console.WriteLine("Вектор нев'язки вiд розв'язку, отриманого з онлайн калькулятора:");
+            Print.Array(NeviazkaCalculator);
+            Console.WriteLine();
 
-            for (int i = 0; i < rowLength; i++)
-            {
-                for (int j = 0; j < colLength; j++)
-                {
-                    Console.Write(string.Format("{0} ", m[i, j]));
-                }
-                Console.WriteLine();
-            }
+            double squareMistake = MistakeAndNeviazka.SquareMistake(IterativeMethod.ValueOfArguments, CalculatorResults);
+            Console.WriteLine("Середньоквадратична похибка:");
+            Console.WriteLine(squareMistake);
         }
     }
 }

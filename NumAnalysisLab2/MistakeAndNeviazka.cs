@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NumAnalysisLab2
 {
@@ -24,14 +20,16 @@ namespace NumAnalysisLab2
             return r;
         }
 
-        public static void PrintArray(double[] r)
+        public static double SquareMistake(double[] arr1, double[] arr2)
         {
-            //виводить на екран нев'язку (або будь-який інший масив)
-            for(int i = 0; i < r.Length; i++)
+            int n = arr1.Length;
+            double sum = 0;
+            for(int i = 0; i < n; i++)
             {
-                Console.Write(r[i] + " ");
+                sum += Math.Pow((arr1[i] - arr2[i]), 2);
             }
-            Console.WriteLine();
+            sum /= n;
+            return Math.Sqrt(sum);
         }
 
     }

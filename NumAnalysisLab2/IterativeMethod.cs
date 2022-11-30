@@ -140,31 +140,16 @@ namespace NumAnalysisLab2
                 if (numberOfIterations < 4)
                 {
                     Console.WriteLine($"Нев'язка на {numberOfIterations}-й iтерацiї");
-                    MistakeAndNeviazka.PrintArray(r);
+                    Print.Array(r);
                     Console.WriteLine();
                 }
                 CalculateOneIteration(m);
             } while (!CalculateMistake(accuracy));
             Console.WriteLine($"Нев'язка на {numberOfIterations}-й iтерацiї");
-            MistakeAndNeviazka.PrintArray(r);
+            Print.Array(r);
             Console.WriteLine();
             Console.WriteLine($"Кiлькiсть iтерацiй для розв'язку до заданої точностi: {numberOfIterations}");
             return numberOfIterations;
-        }
-
-        static void PrintMatrix(double[,] m)
-        {
-            int rowLength = m.GetLength(0);
-            int colLength = m.GetLength(1);
-
-            for (int i = 0; i < rowLength; i++)
-            {
-                for (int j = 0; j < colLength; j++)
-                {
-                    Console.Write(string.Format("{0} ", m[i, j]));
-                }
-                Console.WriteLine();
-            }
         }
 
     }
