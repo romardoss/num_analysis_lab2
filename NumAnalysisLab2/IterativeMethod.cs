@@ -121,7 +121,7 @@ namespace NumAnalysisLab2
             }
         }
 
-        public static void DoIterationUntil(double[,] m, double accuracy = 0)
+        public static void DoIterationUntil(double[,] m, double[,] baseM, double accuracy = 0)
         {
             //збирає всі методи до купи, щоб обрахувати матрицю до кінця (до заданої точності)
             if (accuracy == 0)
@@ -132,6 +132,8 @@ namespace NumAnalysisLab2
 
             do
             {
+                double[] r = MistakeAndNeviazka.CalculateNeviazka(baseM, ValueOfArguments);
+                MistakeAndNeviazka.PrintArray(r);
                 CalculateOneIteration(m);
             } while (!CalculateMistake(accuracy));
         }

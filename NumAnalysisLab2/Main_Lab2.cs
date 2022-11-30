@@ -47,7 +47,7 @@ namespace NumAnalysisLab2
             Console.WriteLine();
 
             Console.WriteLine("Обчислення матрицi:");
-            IterativeMethod.DoIterationUntil(NewMatrix);
+            IterativeMethod.DoIterationUntil(NewMatrix, Matrix);
             Console.WriteLine();
 
             Console.WriteLine("Вiдповiдi:");
