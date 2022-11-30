@@ -137,14 +137,20 @@ namespace NumAnalysisLab2
             {
                 numberOfIterations++;
                 r = MistakeAndNeviazka.CalculateNeviazka(baseM, ValueOfArguments);
+                CalculateOneIteration(m);
                 if (numberOfIterations < 4)
                 {
+                    Console.WriteLine($"Результати на {numberOfIterations}-й iтерацiї");
+                    Print.Array(ValueOfArgumentsTemp);
+                    Console.WriteLine();
                     Console.WriteLine($"Нев'язка на {numberOfIterations}-й iтерацiї");
                     Print.Array(r);
                     Console.WriteLine();
                 }
-                CalculateOneIteration(m);
             } while (!CalculateMistake(accuracy));
+            Console.WriteLine($"Результати на {numberOfIterations}-й iтерацiї");
+            Print.Array(ValueOfArgumentsTemp);
+            Console.WriteLine();
             Console.WriteLine($"Нев'язка на {numberOfIterations}-й iтерацiї");
             Print.Array(r);
             Console.WriteLine();
