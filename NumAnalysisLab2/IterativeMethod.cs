@@ -121,21 +121,35 @@ namespace NumAnalysisLab2
             }
         }
 
-        public static void DoIterationUntil(double[,] m, double[,] baseM, double accuracy = 0)
+        public static int DoIterationUntil(double[,] m, double[,] baseM, double accuracy = 0)
         {
             //збирає всі методи до купи, щоб обрахувати матрицю до кінця (до заданої точності)
+            int numberOfIterations = 0;
             if (accuracy == 0)
             {
                 Console.WriteLine("Введiть точнiсть для методу (через кому)");
                 accuracy = Double.Parse(Console.ReadLine());
+                Console.WriteLine();
             }
 
+            double[] r;
             do
             {
-                double[] r = MistakeAndNeviazka.CalculateNeviazka(baseM, ValueOfArguments);
-                MistakeAndNeviazka.PrintArray(r);
+                numberOfIterations++;
+                r = MistakeAndNeviazka.CalculateNeviazka(baseM, ValueOfArguments);
+                if (numberOfIterations < 4)
+                {
+                    Console.WriteLine($"Нев'язка на {numberOfIterations}-й iтерацiї");
+                    MistakeAndNeviazka.PrintArray(r);
+                    Console.WriteLine();
+                }
                 CalculateOneIteration(m);
             } while (!CalculateMistake(accuracy));
+            Console.WriteLine($"Нев'язка на {numberOfIterations}-й iтерацiї");
+            MistakeAndNeviazka.PrintArray(r);
+            Console.WriteLine();
+            Console.WriteLine($"Кiлькiсть iтерацiй для розв'язку до заданої точностi: {numberOfIterations}");
+            return numberOfIterations;
         }
 
         static void PrintMatrix(double[,] m)
