@@ -26,17 +26,18 @@ namespace NumAnalysisLab2
         static void Main(string[] args)
         {
             PrintMatrix(NewMatrix);
+            Console.WriteLine();
             IterativeMethod.IsAbleToCalculate(NewMatrix);
             Console.WriteLine();
             IterativeMethod.StartOfWork(NewMatrix);
             PrintMatrix(NewMatrix);
-            //IterativeMethod.CalculateOneIteration(NewMatrix);
+            Console.WriteLine();
             for (int i=0; i < 25; i++)
             {
                 IterativeMethod.CalculateOneIteration(NewMatrix);
             }
-            PrintMatrix(NewMatrix);
             Console.WriteLine();
+            Console.WriteLine("ANSWERS:");
             double[] array = IterativeMethod.ValueOfArguments;
             foreach (double i in array)
             {

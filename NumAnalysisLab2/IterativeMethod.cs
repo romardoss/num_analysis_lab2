@@ -49,6 +49,15 @@ namespace NumAnalysisLab2
                 m[i, 0] = m[i, i] * -1;
                 if(i != 0)
                     m[i, i] = temp;
+                if (i > 1)
+                {
+                    for (int j = i; j > 1; j--)
+                    {
+                        temp = m[i, j-1];
+                        m[i, j-1] = m[i, j];
+                        m[i, j] = temp;
+                    }
+                }
             }
             //x1 = -x2 -x3 -x4 b
             //x2 = -x1 -x3 -x4 b etc
@@ -74,10 +83,10 @@ namespace NumAnalysisLab2
                     int IndexOfCurrentX = j-1;
                     if (j-1 >= i) IndexOfCurrentX++;
                     sum += m[i, j] * ValueOfArguments[IndexOfCurrentX];
-                    Console.WriteLine("x" + (IndexOfCurrentX + 1));
+                    //Console.WriteLine("x" + (IndexOfCurrentX + 1));
                 }
                 sum += m[i, n];
-                Console.WriteLine(sum);
+                //Console.WriteLine(sum);
                 ValueOfArgumentsTemp[i] = sum;
             }
             for(int i = 0; i < ValueOfArguments.Length; i++)
