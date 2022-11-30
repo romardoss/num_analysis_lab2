@@ -12,6 +12,8 @@ namespace NumAnalysisLab2
 
         public static bool IsAbleToCalculate(double[,] m)
         {
+            //перевіряє, чи можливо обрахувати методом простої ітерації цю матрицю
+            //тобто, перевіряє на діагональну перевагу
             int n = m.GetLength(0);
             for (int i = 0; i < n; i++)
             {
@@ -74,6 +76,7 @@ namespace NumAnalysisLab2
 
         public static void CalculateOneIteration(double[,] m)
         {
+            //обчислення однієї ітерації методу простої ітерації
             int n = m.GetLength(0);
             for (int i = 0; i < n; i++)
             {
@@ -89,9 +92,62 @@ namespace NumAnalysisLab2
                 //Console.WriteLine(sum);
                 ValueOfArgumentsTemp[i] = sum;
             }
-            for(int i = 0; i < ValueOfArguments.Length; i++)
+        }
+
+        public static bool CalculateMistake(double accuracy = 0.0001)
+        {
+            //обчислює точність після кожної ітерації. Якщо потрібна точність не отримана - повертає false
+            double bi;
+            for (int i = 0; i < ValueOfArguments.Length; i++)
+            {
+                bi = (Math.Abs(ValueOfArgumentsTemp[i] - ValueOfArguments[i])) / 
+                    Math.Abs(ValueOfArgumentsTemp[i]);
+                if (bi >= accuracy)
+                {
+                    UpdadeValueOfArguments();
+                    return false;
+                }
+            }
+            UpdadeValueOfArguments();
+            return true;
+        }
+
+        private static void UpdadeValueOfArguments()
+        {
+            //оновлює значення в іксів у масиві ValueOfArguments
+            for (int i = 0; i < ValueOfArguments.Length; i++)
             {
                 ValueOfArguments[i] = ValueOfArgumentsTemp[i];
+            }
+        }
+
+        public static void DoIterationUntil(double[,] m, double accuracy = 0)
+        {
+            //збирає всі методи до купи, щоб обрахувати матрицю до кінця (до заданої точності)
+            if (accuracy == 0)
+            {
+                Console.WriteLine("Введiть точнiсть для методу (через кому)");
+                accuracy = Double.Parse(Console.ReadLine());
+            }
+
+            do
+            {
+                CalculateOneIteration(m);
+            } while (!CalculateMistake(accuracy));
+        }
+
+        static void PrintMatrix(double[,] m)
+        {
+            int rowLength = m.GetLength(0);
+            int colLength = m.GetLength(1);
+
+            for (int i = 0; i < rowLength; i++)
+            {
+                for (int j = 0; j < colLength; j++)
+                {
+                    Console.Write(string.Format("{0} ", m[i, j]));
+                }
+                Console.WriteLine();
             }
         }
 

@@ -25,19 +25,32 @@ namespace NumAnalysisLab2
 
         static void Main(string[] args)
         {
+            Console.WriteLine("Початкова матриця:");
+            PrintMatrix(Matrix);
+            Console.WriteLine();
+
+            Console.WriteLine("Перевiрка матрицi на дiагональну перевагу:");
+            IterativeMethod.IsAbleToCalculate(Matrix);
+            Console.WriteLine();
+
+            Console.WriteLine("Перетворена матриця:");
             PrintMatrix(NewMatrix);
             Console.WriteLine();
+
+            Console.WriteLine("Перевiрка матрицi на дiагональну перевагу:");
             IterativeMethod.IsAbleToCalculate(NewMatrix);
             Console.WriteLine();
+
+            Console.WriteLine("Перетворення матрицi до вигляду x1=-x2-x3-x4+b; x2=-x1-x3-x4+b; x3=... x4=...:");
             IterativeMethod.StartOfWork(NewMatrix);
             PrintMatrix(NewMatrix);
             Console.WriteLine();
-            for (int i=0; i < 25; i++)
-            {
-                IterativeMethod.CalculateOneIteration(NewMatrix);
-            }
+
+            Console.WriteLine("Обчислення матрицi:");
+            IterativeMethod.DoIterationUntil(NewMatrix);
             Console.WriteLine();
-            Console.WriteLine("ANSWERS:");
+
+            Console.WriteLine("Вiдповiдi:");
             double[] array = IterativeMethod.ValueOfArguments;
             foreach (double i in array)
             {
